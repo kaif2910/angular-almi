@@ -1,0 +1,12 @@
+.finance-module h3 { margin: 0; color: #2d3748; }
+.meta-date { font-size: 0.85rem; color: #a0aec0; margin-bottom: 25px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+.stat-card { background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #4299e1; }
+.stat-card label { display: block; font-size: 0.75rem; color: #718096; margin-bottom: 5px; }
+.stat-card .val { font-size: 1.25rem; font-weight: bold; color: #2d3748; }
+
+.details-section h4 { margin: 20px 0 10px; font-size: 0.95rem; color: #4a5568; }
+pre { background: #edf2f7; padding: 15px; border-radius: 6px; font-size: 0.85rem; }
+.async-msg { font-size: 0.9rem; color: #718096; background: #ebf8ff; padding: 10px; border-radius: 4px; }
+.async-msg span { color: #3182ce; font-weight: bold; }

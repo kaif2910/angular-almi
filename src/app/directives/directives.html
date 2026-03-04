@@ -1,0 +1,28 @@
+<div class="projects-module">
+  <div class="header-actions">
+    <h3>Active Projects (*ngFor)</h3>
+    <button (click)="toggleView()" class="btn">Toggle Grid View</button>
+  </div>
+
+  <div [ngClass]="{ 'grid-view': isGridView, 'list-view': !isGridView }">
+    <div *ngFor="let proj of projects" class="project-card">
+      <h4>{{ proj.name }}</h4>
+      
+      <!-- [ngClass] based on status -->
+      <span class="badge" [ngClass]="{ 
+        'bg-success': proj.status === 'Completed', 
+        'bg-warning': proj.status === 'Active',
+        'bg-danger': proj.status === 'Pending' 
+      }">
+        {{ proj.status }}
+      </span>
+
+      <!-- *ngIf for conditional details -->
+      <div *ngIf="proj.status !== 'Completed'" class="progress-bar">
+        <div class="fill" [style.width.%]="proj.progress"></div>
+        <span>{{ proj.progress }}%</span>
+      </div>
+      <p *ngIf="proj.status === 'Completed'" class="completion-text">✅ Milestone Reached</p>
+    </div>
+  </div>
+</div>

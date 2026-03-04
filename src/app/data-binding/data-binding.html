@@ -1,0 +1,26 @@
+<div class="controls-module">
+  <h3>System Configuration: {{ systemName }}</h3>
+  <p class="last-sync">Last Activity: {{ lastUpdate }}</p>
+
+  <div class="control-grid">
+    <div class="control-item">
+      <label>Mainframe Access (Property Binding)</label>
+      <button [disabled]="isMainframeDisabled" class="btn">Execute Protocol</button>
+      <button (click)="toggleMainframe()" class="btn btn-secondary">
+        {{ isMainframeDisabled ? 'Enable' : 'Disable' }} Access
+      </button>
+    </div>
+
+    <div class="control-item">
+      <label>Security Override (Event & Class Binding)</label>
+      <button 
+        [class.active]="isSecurityEnabled" 
+        (click)="toggleSecurity()" 
+        class="toggle-btn"
+      >
+        {{ isSecurityEnabled ? 'SECURITY: ON' : 'SECURITY: OFF' }}
+      </button>
+      <p *ngIf="isSecurityEnabled" class="alert">Security protocols are active!</p>
+    </div>
+  </div>
+</div>

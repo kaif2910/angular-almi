@@ -1,0 +1,72 @@
+<div class="app-container">
+  <!-- 1. Header with Interpolation (Prac 3) -->
+  <nav class="top-nav">
+    <div class="brand">
+      <span class="logo">📦</span>
+      <h1>{{ appName }}</h1>
+    </div>
+    <div class="status-bar">
+      Status: <span class="badge-online">{{ systemStatus }}</span>
+      <span class="timestamp"> | {{ lastUpdated | date:'mediumTime' }}</span>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 2. Controls with Event Binding (Prac 4) -->
+    <header class="table-header">
+      <h2>Inventory Overview</h2>
+      <button (click)="toggleTable()" class="btn-toggle">
+        {{ isTableVisible ? 'Hide Table' : 'Show Table' }}
+      </button>
+    </header>
+
+    <!-- 3. Table with Directives (Prac 5) and Pipes (Prac 6) -->
+    <section *ngIf="isTableVisible" class="content-fade">
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock Level</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of inventory">
+            <td class="code">{{ item.id }}</td>
+            <td class="name">{{ item.name | uppercase }}</td>
+            <td>{{ item.category }}</td>
+            <td class="price">{{ item.price | currency:'INR' }}</td>
+            
+            <!-- [ngClass] based on stock level (Prac 5) -->
+            <td>
+              <span class="stock-pill" [ngClass]="{
+                'stock-ok': item.stock > 10,
+                'stock-low': item.stock > 0 && item.stock <= 10,
+                'stock-out': item.stock === 0
+              }">
+                {{ item.stock > 0 ? item.stock + ' units' : 'Out of Stock' }}
+              </span>
+            </td>
+
+            <!-- Event & Property Binding (Prac 4) -->
+            <td class="actions">
+              <button [disabled]="item.stock === 0" (click)="issueItem(item)" class="btn-action btn-issue">
+                Issue
+              </button>
+              <button (click)="restockItem(item)" class="btn-action btn-restock">
+                Restock
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div *ngIf="!isTableVisible" class="empty-state">
+      <p>Click "Show Table" to view current inventory data.</p>
+    </div>
+  </main>
+</div>

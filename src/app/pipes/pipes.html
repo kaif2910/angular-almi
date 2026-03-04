@@ -1,0 +1,31 @@
+<div class="finance-module">
+  <h3>{{ reportTitle | uppercase }}</h3>
+  <p class="meta-date">Generated on: {{ generationDate | date:'fullDate' }}</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <label>Budget (Currency Pipe)</label>
+      <div class="val">{{ allocatedBudget | currency:'USD':'symbol':'1.0-0' }}</div>
+    </div>
+    
+    <div class="stat-card">
+      <label>Spending (Percent Pipe)</label>
+      <div class="val">{{ spendingRate | percent }}</div>
+    </div>
+
+    <div class="stat-card">
+      <label>Decimal Check (Number Pipe)</label>
+      <div class="val">{{ allocatedBudget / 1000 | number:'1.2-2' }}k</div>
+    </div>
+  </div>
+
+  <div class="details-section">
+    <h4>Audit Details (JSON Pipe)</h4>
+    <pre>{{ auditLog | json }}</pre>
+
+    <h4>Real-time Verification (Async Pipe)</h4>
+    <p class="async-msg">
+      Status: <span>{{ asyncData | async }}</span>
+    </p>
+  </div>
+</div>
